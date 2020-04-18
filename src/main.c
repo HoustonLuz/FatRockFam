@@ -1,4 +1,5 @@
 #include "main.h"
+#include "BPB.h"
 
 char	**userInstr;
 int	userArgs;
@@ -13,6 +14,9 @@ int main(int argc, const char* argv[]){
 		printf("Incorrect image file.\n");
 		return -1;
 	}
+	else {
+		ReadBPB(img);
+	}
 
 	do {
 		getUserIn();		
@@ -21,6 +25,8 @@ int main(int argc, const char* argv[]){
 			//Normal Execution
 			if (strcmp(userInstr[0],"exit") == 0) {
 				exitFlag = 1;
+			} else if (strcmp(userInstr[0],"info") == 0) {
+				PrintBPB();
 			} else {
 				//else should not catch any specific instruction.
 				//As such leave this code in so that you know when

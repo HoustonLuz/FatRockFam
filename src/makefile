@@ -1,12 +1,15 @@
 C=gcc -g
 L=gcc -g -c
 
-../proj3.x : main.o
-	$C main.o -o ../proj3.x
+../proj3.x : main.o BPB.o
+	$C main.o BPB.o -o ../proj3.x
 	chmod -R 700 ..
 
 main.o : main.c main.h
 	$L main.c
+
+BPB.o : BPB.c BPB.h
+	$L BPB.c
 
 run :
 	../proj3.x ../fat32.img > proj3.o
