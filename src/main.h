@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "BPB.h"
+#include "ls.h"
 
 void getUserIn();
 

@@ -3,5 +3,9 @@
 
 void ReadBPB(FILE*);
 void PrintBPB();
+int LocateDir(int);
+int getRootClustNum();
+int getRsvdSecCnt();
+int getBytsPerSec();
 
 #endif

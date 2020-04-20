@@ -3,6 +3,7 @@
 
 char	**userInstr;
 int	userArgs;
+unsigned int CLUSTER = 0x02;
 
 int main(int argc, const char* argv[]){
 	int	exitFlag = 0,
@@ -27,6 +28,11 @@ int main(int argc, const char* argv[]){
 				exitFlag = 1;
 			} else if (strcmp(userInstr[0],"info") == 0) {
 				PrintBPB();
+			} else if (strcmp(userInstr[0],"ls") == 0) {
+				if(userArgs == 1)
+					ls(".", img, CLUSTER);
+				else
+					ls(userInstr[1], img, CLUSTER);
 			} else {
 				//else should not catch any specific instruction.
 				//As such leave this code in so that you know when

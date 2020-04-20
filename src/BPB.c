@@ -10,6 +10,7 @@ struct bpbStruct {
 	unsigned int BPB_FATSz32;
 	unsigned int BPB_RootClus;
 	unsigned int BPB_TotSec32;
+	unsigned int BPB_RootEntCnt;
 };
 
 struct bpbStruct bb;
@@ -34,6 +35,10 @@ void ReadBPB(FILE* f) {
 	fread(bytes, sizeof(char), 1, f);
 	bb.BPB_NumFATs = bytes[0];
 
+	fseek(f, 17, SEEK_SET);
+	fread(bytes, sizeof(char), 2, f);
+	bb.BPB_RootEntCnt = bytes[0];
+
 	fseek(f, 32, SEEK_SET);
 	fread(bytes, sizeof(char), 4, f);
 	bb.BPB_TotSec32 = bytes[0];
@@ -55,4 +60,23 @@ void PrintBPB() {
 	printf("Total Sectors: %u\n", bb.BPB_TotSec32);
 	printf("FAT Size: %u\n", bb.BPB_FATSz32);
 	printf("Root Cluster: %u\n", bb.BPB_RootClus);
+}
+
+int LocateDir(int clustNum) {
+	int FirstDataSect = bb.BPB_RsvdSecCnt + (bb.BPB_NumFATs * bb.BPB_FATSz32);
+	int Offset = ((clustNum - 2) * bb.BPB_SecPerClus) + FirstDataSect;
+	int ByteOffset = Offset * bb.BPB_BytsPerSec;
+	return ByteOffset;
+}
+
+int getRootClustNum() {
+	return bb.BPB_RootClus;
+}
+
+int getRsvdSecCnt() {
+	return bb.BPB_RsvdSecCnt;
+}
+
+int getBytsPerSec(){
+	return bb.BPB_BytsPerSec;
 }
