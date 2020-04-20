@@ -80,3 +80,7 @@ int getRsvdSecCnt() {
 int getBytsPerSec(){
 	return bb.BPB_BytsPerSec;
 }
+
+int getSecPerClus(){
+	return bb.BPB_SecPerClus;
+}

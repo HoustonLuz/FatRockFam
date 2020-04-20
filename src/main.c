@@ -24,7 +24,9 @@ int main(int argc, const char* argv[]){
 
 		if (userArgs > 0) {
 			//Normal Execution
-			if (strcmp(userInstr[0],"exit") == 0) {
+			if (strcmp(userInstr[0],"exit") == 0//) {
+			//REMOVE THIS BEFORE TURNIN
+			|| !strcmp(userInstr[0],"x")){
 				exitFlag = 1;
 			} else if (strcmp(userInstr[0],"info") == 0) {
 				PrintBPB();

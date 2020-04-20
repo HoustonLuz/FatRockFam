@@ -9,9 +9,15 @@ Team Members:
 
 Division of Labor:
 	Houston Luzader
-		-Part x:
+		-Part 1: exit
 	Brandon Matulonis
-		-Part y:
+		-Part 2: info
+
+creat, rm, & mkdir; rmdir
+cp & mv; cp -r
+
+size, cd, & ls
+open, close, read, & write
 
 Tar contents:
 	-log.txt : Git commit log

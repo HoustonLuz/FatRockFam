@@ -2,14 +2,43 @@
 #include "BPB.h"
 
 void ls(const char* DIRNAME, FILE* f, unsigned int clust) {
-	int i = 0;
+	struct DIRENTRY dir;
+	unsigned int	offset,
+			index;
+	char		buf[32];
+	
 		if(strcmp(DIRNAME, ".") == 0) {
 			PrintFileContents(clust, f);
 		} else if (strcmp(DIRNAME, "..") == 0) {
 			PrintFileContents(clust, f);
 		} else {
-			PrintFileContents(clust, f);
-			printf("Directory does not exist.\n");
+
+			do {
+				offset = LocateDir(clust);
+				index = 0;
+
+				do {
+					fseek(f, offset + index, SEEK_SET);
+					fread(buf, sizeof(char), 32, f);
+
+					// entry not allocated/end of dir
+					if (buf[0] == 0x00 || buf[0] == 0xE5)
+						continue;
+					if (buf[11] != 0x0F) {
+
+						format(&dir, buf);
+
+						if (!strcmp(dir.DIR_Name, DIRNAME))
+							printf("%s\n", dir.DIR_Name);
+					}
+
+					index += 32;
+				} while (buf[0] != 0x00 && index < getBytsPerSec() * getSecPerClus());
+				clust = NextCluster(clust, f);
+			} while (clust < 0x0FFFFFF8);
+
+//			PrintFileContents(clust, f);
+//			printf("Directory does not exist.\n");
 		}
 }
 
@@ -83,3 +112,24 @@ unsigned int FindCluster(unsigned int currentClust, FILE* f, char* path) {
 	else
 		FindCluster(NextCluster(currentClust, f), f, path);
 }
+
+void format(DIRENTRY* dir, char *buf){
+	int i;
+
+	for(i = 0;i < 10;i++) {
+		dir->DIR_Name[i] = buf[i];
+		if(dir->DIR_Name[i] == ' ')
+			dir->DIR_Name[i] = '\0';
+	}
+	dir->DIR_Name[10] = '\0';
+
+}
+
+/*
+typedef struct DIRENTRY {
+	unsigned char	DIR_Name[11],
+			DIR_Attributes,
+			DIR_FstClus[4]
+			DIR_FileSize[4];
+} DIRENTRY;
+*/

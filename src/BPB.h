@@ -7,5 +7,6 @@ int LocateDir(int);
 int getRootClustNum();
 int getRsvdSecCnt();
 int getBytsPerSec();
+int getSecPerClus();
 
 #endif
