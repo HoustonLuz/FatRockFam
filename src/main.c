@@ -27,6 +27,8 @@ int main(int argc, const char* argv[]){
 			//REMOVE THIS BEFORE TURNIN
 			|| !strcmp(userInstr[0],"x")){
 				exitFlag = 1;
+			} else if (strcmp(userInstr[0],"clus") == 0) {
+				printf("%d is the cluster.\n", CLUSTER);
 			} else if (strcmp(userInstr[0],"size") == 0) {
 				if(userArgs == 1)
 					printf("usage: size \"FILENAME\"\n");

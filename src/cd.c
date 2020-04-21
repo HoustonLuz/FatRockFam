@@ -7,7 +7,7 @@ unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 	char		buf[32];
 	int		foundFlag = 0;
 
-	if(!strcmp(arg, "."))
+	if(strcmp(arg, ".") == 0)
 		return clus;
 	if(!strcmp(arg, "..") && clus == 2){
 		printf("Directory not found.\n");
@@ -29,10 +29,13 @@ unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 
 				format(&dir, buf);
 
-				if (!strcmp(dir.DIR_Name, arg)
-				&& dir.DIR_Attributes == 0x10)
-					return dir.DIR_FstClus;
-				else
+				if (strcmp(dir.DIR_Name, arg) == 0
+				&& dir.DIR_Attributes == 0x10) {
+					if(dir.DIR_FstClus < 2)
+						return 2;
+					else
+						return dir.DIR_FstClus;
+				} else
 					foundFlag = 2;
 			}
 
