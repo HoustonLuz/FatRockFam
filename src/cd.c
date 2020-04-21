@@ -3,7 +3,8 @@
 unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 	struct DIRENTRY dir;
 	unsigned int	offset,
-			index;
+			index,
+			stClus = clus;
 	char		buf[32];
 	int		foundFlag = 0;
 
@@ -33,8 +34,9 @@ unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 				&& dir.DIR_Attributes == 0x10) {
 					if(dir.DIR_FstClus < 2)
 						return 2;
-					else
+					else if (dir.DIR_FstClus < 268435448) {
 						return dir.DIR_FstClus;
+					}
 				} else
 					foundFlag = 2;
 			}
@@ -50,5 +52,5 @@ unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 		printf("Cannot change directory to non-directory.\n");
 
 
-	return clus;
+	return stClus;
 }
