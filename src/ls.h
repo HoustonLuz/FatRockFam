@@ -6,9 +6,9 @@
 
 typedef struct DIRENTRY {
 	unsigned char	DIR_Name[11],
-			DIR_Attributes,
-			DIR_FstClus[4]
-			DIR_FileSize[4];
+						DIR_Attributes;
+	unsigned int	DIR_FstClus,
+						DIR_FileSize;
 } DIRENTRY;
 
 void ls(const char*, FILE*, unsigned int);

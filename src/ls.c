@@ -123,13 +123,28 @@ void format(DIRENTRY* dir, char *buf){
 	}
 	dir->DIR_Name[10] = '\0';
 
+	dir->DIR_Attributes = buf[11];
+	
+	dir->DIR_FstClus = (unsigned int) buf[26]<<(24);
+	dir->DIR_FstClus += (unsigned int) buf[27]<<(16);
+	dir->DIR_FstClus += (unsigned int) buf[20]<<(8);
+	dir->DIR_FstClus += (unsigned int) buf[21];
+
+	dir->DIR_FileSize = 0;
+	for(i = 0; i < 4; i++)
+		dir->DIR_FileSize += (unsigned int) buf[i+28];
+
+	printf("DIR_Name: %s\n", dir->DIR_Name);
+	printf("DIR_Attributes: %X\n", dir->DIR_Attributes);
+	printf("DIR_FstClus: %X\n", dir->DIR_FstClus);
+	printf("DIR_FileSize: %X\n", dir->DIR_FileSize);
 }
 
 /*
 typedef struct DIRENTRY {
 	unsigned char	DIR_Name[11],
 			DIR_Attributes,
-			DIR_FstClus[4]
-			DIR_FileSize[4];
+	unsigned int		DIR_FstClus
+			DIR_FileSize;
 } DIRENTRY;
 */
