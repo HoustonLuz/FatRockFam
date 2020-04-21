@@ -1,11 +1,18 @@
-#include "size.h"
+#include "cd.h"
 
-void size (FILE* f, unsigned int clus, char* arg) {
+unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 	struct DIRENTRY dir;
 	unsigned int	offset,
 			index;
 	char		buf[32];
 	int		foundFlag = 0;
+
+	if(!strcmp(arg, "."))
+		return clus;
+	if(!strcmp(arg, "..") && clus == 2){
+		printf("Directory not found.\n");
+		return clus;
+	}
 
 	do {
 		offset = LocateDir(clus);
@@ -22,14 +29,11 @@ void size (FILE* f, unsigned int clus, char* arg) {
 
 				format(&dir, buf);
 
-				if (!strcmp(dir.DIR_Name, arg)) {
-					if (dir.DIR_Attributes == 0x10)
-						foundFlag = 2;
-					else {
-						printf("%s size is %d.\n", dir.DIR_Name, dir.DIR_FileSize);
-						foundFlag=1;
-					}
-				}
+				if (!strcmp(dir.DIR_Name, arg)
+				&& dir.DIR_Attributes == 0x10)
+					return dir.DIR_FstClus;
+				else
+					foundFlag = 2;
 			}
 
 			index += 32;
@@ -38,7 +42,10 @@ void size (FILE* f, unsigned int clus, char* arg) {
 	} while (clus < 0x0FFFFFF8);
 
 	if (foundFlag == 0)
-		printf("File not found.\n");
+		printf("Directory not found.\n");
 	else if (foundFlag == 2)
-		printf("File is a directory.\n");
+		printf("Cannot change directory to non-directory.\n");
+
+
+	return clus;
 }

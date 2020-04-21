@@ -33,7 +33,7 @@ void ls(const char* DIRNAME, FILE* f, unsigned int clust) {
 					}
 
 					index += 32;
-				} while (buf[0] != 0x00 && index < getBytsPerSec() * getSecPerClus());
+				} while (buf[0] != 0x00 && index < 512);
 				clust = NextCluster(clust, f);
 			} while (clust < 0x0FFFFFF8);
 

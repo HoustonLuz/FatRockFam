@@ -32,13 +32,11 @@ int main(int argc, const char* argv[]){
 					printf("usage: size \"FILENAME\"\n");
 				else
 					size(img, CLUSTER, userInstr[1]);
-/*
 			} else if (strcmp(userInstr[0],"cd") == 0) {
 				if(userArgs == 1)
 					printf("usage: cd \"DIRECTORY\"\n");
 				else
 					CLUSTER = cd(img, CLUSTER, userInstr[1]);
-*/
 			} else if (strcmp(userInstr[0],"info") == 0) {
 				PrintBPB();
 			} else if (strcmp(userInstr[0],"ls") == 0) {

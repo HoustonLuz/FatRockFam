@@ -1,12 +1,15 @@
 C=gcc -g
 L=gcc -g -c
 
-../proj3.x : main.o BPB.o ls.o size.o
-	$C main.o BPB.o ls.o size.o -o ../proj3.x
+../proj3.x : main.o BPB.o ls.o size.o cd.o
+	$C main.o BPB.o cd.o ls.o size.o -o ../proj3.x
 	chmod -R 700 ..
 
 main.o : main.c main.h
 	$L main.c
+
+cd.o : cd.c cd.h
+	$L cd.c
 
 BPB.o : BPB.c BPB.h
 	$L BPB.c
