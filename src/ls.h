@@ -14,6 +14,6 @@ typedef struct DIRENTRY {
 void ls(const char*, FILE*, unsigned int);
 void PrintFileContents(int, FILE*);
 unsigned int NextCluster(unsigned int, FILE*);
-void format(DIRENTRY*, char*);
+void format(DIRENTRY*, unsigned char*);
 
 #endif
