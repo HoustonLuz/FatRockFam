@@ -10,8 +10,8 @@ void ls(const char* DIRNAME, FILE* f, unsigned int clust) {
 	
 		if(strcmp(DIRNAME, ".") == 0) {
 			PrintFileContents(clust, f);
-		} else if (strcmp(DIRNAME, "..") == 0) {
-			PrintFileContents(clust, f);
+		} else if (!strcmp(DIRNAME, "..") && clust == 2) {
+					printf("Directory not found.\n");
 		} else {
 
 			do {
@@ -29,7 +29,10 @@ void ls(const char* DIRNAME, FILE* f, unsigned int clust) {
 
 						format(&dir, buf);
 
-						if (!strcmp(dir.DIR_Name, DIRNAME)) {
+						if (strcmp(dir.DIR_Name, DIRNAME) == 0
+						&& dir.DIR_Attributes == 0x10) {
+							if(dir.DIR_FstClus < 2)
+								dir.DIR_FstClus = 2;
 							PrintFileContents(dir.DIR_FstClus, f);
 							err = 0;
 							return;
@@ -42,7 +45,7 @@ void ls(const char* DIRNAME, FILE* f, unsigned int clust) {
 			} while (clust < 0x0FFFFFF8);
 
 			if(err == 1)
-				printf("Directory does not exist.\n");
+				printf("Directory not found.\n");
 		}
 }
 
