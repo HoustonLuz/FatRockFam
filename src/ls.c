@@ -134,17 +134,10 @@ void format(DIRENTRY* dir, char *buf){
 	for(i = 0; i < 4; i++)
 		dir->DIR_FileSize += (unsigned int) buf[i+28];
 
+	/*
 	printf("DIR_Name: %s\n", dir->DIR_Name);
 	printf("DIR_Attributes: %X\n", dir->DIR_Attributes);
 	printf("DIR_FstClus: %X\n", dir->DIR_FstClus);
 	printf("DIR_FileSize: %X\n", dir->DIR_FileSize);
+	*/
 }
-
-/*
-typedef struct DIRENTRY {
-	unsigned char	DIR_Name[11],
-			DIR_Attributes,
-	unsigned int		DIR_FstClus
-			DIR_FileSize;
-} DIRENTRY;
-*/

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "BPB.h"
 #include "ls.h"
+#include "size.h"
 
 void getUserIn();
 
