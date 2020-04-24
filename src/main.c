@@ -40,7 +40,11 @@ int main(int argc, const char* argv[]){
 					printf("usage: creat \"FILENAME\"\n");
 				else
 					creat(img, CLUSTER, userInstr[1]);
-
+			} else if (strcmp(userInstr[0],"mkdir") == 0) {
+				if(userArgs == 1 || userArgs > 2)
+					printf("usage: mkdir \"DIRNAME\"\n");
+				else
+					mkdir(img, CLUSTER, userInstr[1]);
 			} else if (strcmp(userInstr[0],"cd") == 0) {
 				if(userArgs == 1 || userArgs > 2)
 					printf("usage: cd \"DIRECTORY\"\n");

@@ -23,6 +23,10 @@ size.o : size.c size.h
 ls.o : ls.c ls.h
 	$L ls.c
 
+reset :
+	tar -xf ../fat32.img.tar.gz
+	mv fat32.img ..
+
 run :
 	../proj3.x ../fat32.img
 

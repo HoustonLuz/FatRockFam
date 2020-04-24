@@ -9,15 +9,20 @@ Team Members:
 
 Division of Labor:
 	Houston Luzader
-		-Part 1: exit
-		-Part 3: size
-		-Part 5: cd
+		-Part 1 : exit
+		-Part 3 : size
+		-Part 5 : cd
+		-Part 6 : creat
+		-Part 7 : mkdir
 	Brandon Matulonis
-		-Part 2: info
-		-Part 4: ls
+		-Part 2 : info
+		-Part 4 : ls
+		-Part 8 : mv
+		-Part 13: rm
+		-Part 14: cp
 
-creat, rm, & mkdir; rmdir
-cp & mv; cp -r
+rm; rmdir
+cp -r
 open, close, read, & write
 
 Tar contents:

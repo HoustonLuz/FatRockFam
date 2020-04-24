@@ -11,4 +11,6 @@ void creat(FILE*, unsigned int, char*);
 unsigned int findFirstFreeCluster(FILE* f);
 void addDirEnt(FILE*, unsigned int, DIRENTRY*);
 
+void mkdir(FILE*, unsigned int, char*);
+
 #endif
