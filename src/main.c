@@ -8,6 +8,8 @@ int main(int argc, const char* argv[]){
 	int	exitFlag = 0,
 		i;
 
+	listInit();
+
 	//Open file
 	FILE* img = fopen(argv[1], "r+");
 	if(img == 0){
@@ -35,6 +37,25 @@ int main(int argc, const char* argv[]){
 					printf("usage: size \"FILENAME\"\n");
 				else
 					size(img, CLUSTER, userInstr[1]);
+			} else if (strcmp(userInstr[0],"open") == 0) {
+				if(userArgs != 3)
+					printf("usage: open \"FILENAME\" MODE \n");
+				else {
+					if(!strcmp(userInstr[2], "r"))
+						myOpen(img, CLUSTER, userInstr[1], 1);
+					else if(!strcmp(userInstr[2], "w"))
+						myOpen(img, CLUSTER, userInstr[1], 2);
+					else if(!strcmp(userInstr[2], "rw")
+					|| !strcmp(userInstr[2], "wr"))
+						myOpen(img, CLUSTER, userInstr[1], 3);
+					else
+						printf("valid flags are: r w rw wr\n");
+				}
+			} else if (strcmp(userInstr[0],"close") == 0) {
+				if(userArgs == 1 || userArgs > 2)
+					printf("usage: close \"FILENAME\"\n");
+				else
+					myClose(img, CLUSTER, userInstr[1]);
 			} else if (strcmp(userInstr[0],"creat") == 0) {
 				if(userArgs == 1 || userArgs > 2)
 					printf("usage: creat \"FILENAME\"\n");
@@ -89,6 +110,8 @@ int main(int argc, const char* argv[]){
 		}
 
 	} while (exitFlag == 0);
+
+	listDest();
 
 	//Deallocate user arguments
 	for(i = 0;i < 5;i++)

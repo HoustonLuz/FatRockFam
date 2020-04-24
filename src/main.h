@@ -11,6 +11,7 @@
 #include "mv.h"
 #include "cp.h"
 #include "rm.h"
+#include "open.h"
 
 void getUserIn();
 

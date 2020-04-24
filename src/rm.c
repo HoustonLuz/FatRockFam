@@ -10,6 +10,9 @@ void rm(const char* FILENAME, FILE* f, unsigned int clust) {
 			i = 0,
 			lastEntry = 0;
 
+	if(locate(FILENAME, clust) != -1)
+		myClose(f, clust, FILENAME);
+
 	// loop to validate FROM and TO entries
 	do {
 		offset = LocateDir(clust);

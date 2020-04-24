@@ -14,6 +14,8 @@ Division of Labor:
 		-Part 5 : cd
 		-Part 6 : creat
 		-Part 7 : mkdir
+		-Part 9 : open
+		-Part 10: close
 	Brandon Matulonis
 		-Part 2 : info
 		-Part 4 : ls
@@ -21,9 +23,9 @@ Division of Labor:
 		-Part 13: rm
 		-Part 14: cp
 
-rm; rmdir
+rmdir
 cp -r
-open, close, read, & write
+read, & write
 
 Tar contents:
 	-log.txt : Git commit log

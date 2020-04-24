@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ls.h"
+#include "open.h"
 
 void rm(const char*, FILE*, unsigned int);
 
