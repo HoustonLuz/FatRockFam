@@ -8,6 +8,9 @@
 #include "cd.h"
 #include "creat.h"
 #include "size.h"
+#include "mv.h"
+#include "cp.h"
+#include "rm.h"
 
 void getUserIn();
 

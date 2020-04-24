@@ -50,6 +50,26 @@ int main(int argc, const char* argv[]){
 					printf("usage: cd \"DIRECTORY\"\n");
 				else
 					CLUSTER = cd(img, CLUSTER, userInstr[1]);
+			} else if (strcmp(userInstr[0],"mv") == 0) {
+				if(userArgs != 3)
+					printf("usage: mv \"FROM\" \"TO\"\n");
+				else
+					mv(userInstr[1], userInstr[2], img, CLUSTER);
+			} else if (strcmp(userInstr[0],"cp") == 0) {
+				if(userArgs == 4)
+					if(userInstr[1] == "-r")
+						printf("Extra credit not implemented yet\n");
+					else
+						printf("usage: cd -r \"FROM\" \"TO\"\n");
+				else if (userArgs == 3)
+					cp(userInstr[1], userInstr[2], img, CLUSTER);
+				else
+					printf("usage: cd \"FILENAME\" \"TO\"\n");
+			} else if (strcmp(userInstr[0],"rm") == 0) {
+				if(userArgs == 1 || userArgs > 2)
+					printf("usage: rm \"FILENAME\"\n");
+				else
+					rm(userInstr[1], img, CLUSTER);
 			} else if (strcmp(userInstr[0],"info") == 0) {
 				PrintBPB();
 			} else if (strcmp(userInstr[0],"ls") == 0) {

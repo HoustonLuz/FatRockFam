@@ -8,7 +8,6 @@ void cp(const char* FILENAME, const char* TO, FILE* f, unsigned int clust) {
 	unsigned int toIndex, toClust;
 	char buf[32];
 	char bufCopy[32];
-	char FstClusHI[2], FstClusLO[2], FileSize[4];
 	int 	fromFlag = 0,	// 0: DNE, 1: DIR, 2: FILE
 			toFlag = 0, 	// 0: DNE, 1: DIR, 2: FILE
 			i = 0,

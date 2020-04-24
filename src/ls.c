@@ -108,18 +108,6 @@ unsigned int NextCluster(unsigned int clust, FILE* f) {
 	return next;
 }
 
-unsigned int FindCluster(unsigned int currentClust, FILE* f, char* path) {
-	unsigned int clust;
-	fseek(f, LocateDir(currentClust), SEEK_SET);
-	fread(&clust, sizeof(unsigned int), 1, f);
-	
-	// function to return each dir one by one until match
-	if(strcmp(path, "") == 0)
-		return clust;
-	else
-		FindCluster(NextCluster(currentClust, f), f, path);
-}
-
 void format(DIRENTRY* dir, unsigned char *buf){
 	int i;
 
