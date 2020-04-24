@@ -28,14 +28,21 @@ int main(int argc, const char* argv[]){
 			|| !strcmp(userInstr[0],"x")){
 				exitFlag = 1;
 			} else if (strcmp(userInstr[0],"clus") == 0) {
+				//REMOVE BEFORE TURNIN
 				printf("%d is the cluster.\n", CLUSTER);
 			} else if (strcmp(userInstr[0],"size") == 0) {
-				if(userArgs == 1)
+				if(userArgs == 1 || userArgs > 2)
 					printf("usage: size \"FILENAME\"\n");
 				else
 					size(img, CLUSTER, userInstr[1]);
+			} else if (strcmp(userInstr[0],"creat") == 0) {
+				if(userArgs == 1 || userArgs > 2)
+					printf("usage: creat \"FILENAME\"\n");
+				else
+					creat(img, CLUSTER, userInstr[1]);
+
 			} else if (strcmp(userInstr[0],"cd") == 0) {
-				if(userArgs == 1)
+				if(userArgs == 1 || userArgs > 2)
 					printf("usage: cd \"DIRECTORY\"\n");
 				else
 					CLUSTER = cd(img, CLUSTER, userInstr[1]);

@@ -69,6 +69,10 @@ int LocateDir(int clustNum) {
 	return ByteOffset;
 }
 
+int getFatSize() {
+	return bb.BPB_FATSz32;
+}
+
 int getRootClustNum() {
 	return bb.BPB_RootClus;
 }

@@ -37,7 +37,7 @@ unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 					else if (dir.DIR_FstClus < 268435448) {
 						return dir.DIR_FstClus;
 					}
-				} else
+				} else if (!strcmp(dir.DIR_Name, arg))
 					foundFlag = 2;
 			}
 
@@ -50,7 +50,6 @@ unsigned int cd (FILE* f, unsigned int clus, char* arg) {
 		printf("Directory not found.\n");
 	else if (foundFlag == 2)
 		printf("Cannot change directory to non-directory.\n");
-
 
 	return stClus;
 }
