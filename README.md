@@ -22,23 +22,28 @@ Division of Labor:
 		-Part 8 : mv
 		-Part 13: rm
 		-Part 14: cp
-
-rmdir
-cp -r
-read, & write
+		-Part 15: rmdir
 
 Tar contents:
 	-log.txt : Git commit log
+	-src/ 	 : source code
 
 How to compile executables:
-	-make
-	-make run
+	-place image in parent directory of src
+	-go inside of src directory
+	>make
+	>make run
 
 Known bugs:
-	-
+	-creat and mkdir are hardcoded to only be inside of the first free
+	 cluster, so directories longer than 16 entries that are made via
+	 mkdir may be overwritten when the next time mkdir or creat are called.
+	-rm and rmdir might not deallocate all memory, and might only remove
+	 the entry from the directory cluster instead.
 
 Unfinished sections:
-	-
+	-read
+	-write
 
 Extra credit:
-	-
+	-rmdir
