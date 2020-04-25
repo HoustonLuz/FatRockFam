@@ -25,13 +25,8 @@ int main(int argc, const char* argv[]){
 
 		if (userArgs > 0) {
 			//Normal Execution
-			if (strcmp(userInstr[0],"exit") == 0//) {
-			//REMOVE THIS BEFORE TURNIN
-			|| !strcmp(userInstr[0],"x")){
+			if (strcmp(userInstr[0],"exit") == 0) {
 				exitFlag = 1;
-			} else if (strcmp(userInstr[0],"clus") == 0) {
-				//REMOVE BEFORE TURNIN
-				printf("%d is the cluster.\n", CLUSTER);
 			} else if (strcmp(userInstr[0],"size") == 0) {
 				if(userArgs == 1 || userArgs > 2)
 					printf("usage: size \"FILENAME\"\n");
@@ -56,6 +51,16 @@ int main(int argc, const char* argv[]){
 					printf("usage: close \"FILENAME\"\n");
 				else
 					myClose(img, CLUSTER, userInstr[1]);
+			} else if (strcmp(userInstr[0],"read") == 0) {
+				if(userArgs != 4)
+					printf("usage: read \"FILENAME\" \"OFFSET\" \"SIZE\"\n");
+				else
+					read(userInstr[1], userInstr[2], userInstr[3], img, CLUSTER);
+			} else if (strcmp(userInstr[0],"write") == 0) {
+				if(userArgs != 5)
+					printf("usage: write FILENAME OFFSET SIZE STRING\n");
+				else
+					write(userInstr[1], userInstr[2], userInstr[3], userInstr[4], img, CLUSTER);
 			} else if (strcmp(userInstr[0],"creat") == 0) {
 				if(userArgs == 1 || userArgs > 2)
 					printf("usage: creat \"FILENAME\"\n");
@@ -90,7 +95,12 @@ int main(int argc, const char* argv[]){
 				if(userArgs == 1 || userArgs > 2)
 					printf("usage: rm \"FILENAME\"\n");
 				else
-					rm(userInstr[1], img, CLUSTER);
+					rm(userInstr[1], img, CLUSTER, 0);
+			} else if (strcmp(userInstr[0],"rmdir") == 0) {
+				if(userArgs == 1 || userArgs > 2)
+					printf("usage: rmdir DIRNAME\n");
+				else
+					rm(userInstr[1], img, CLUSTER, 1);
 			} else if (strcmp(userInstr[0],"info") == 0) {
 				PrintBPB();
 			} else if (strcmp(userInstr[0],"ls") == 0) {
@@ -99,10 +109,7 @@ int main(int argc, const char* argv[]){
 				else
 					ls(userInstr[1], img, CLUSTER);
 			} else {
-				//else should not catch any specific instruction.
-				//As such leave this code in so that you know when
-				// an error occurs in catching any instruction.
-				printf("Command WIP.\n");
+				printf("Unknown command\n");
 			}
 		} else {
 			//Blank instruction, print error.

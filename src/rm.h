@@ -6,6 +6,6 @@
 #include "ls.h"
 #include "open.h"
 
-void rm(const char*, FILE*, unsigned int);
+void rm(const char*, FILE*, unsigned int, int);
 
 #endif

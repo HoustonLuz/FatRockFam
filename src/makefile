@@ -1,8 +1,8 @@
 C=gcc -g
 L=gcc -g -c
 
-../proj3.x : main.o BPB.o ls.o size.o cd.o creat.o open.o mv.o cp.o rm.o
-	$C main.o BPB.o open.o creat.o cd.o ls.o size.o mv.o cp.o rm.o -o ../proj3.x
+../proj3.x : main.o BPB.o ls.o size.o cd.o creat.o open.o read.o mv.o cp.o rm.o
+	$C main.o BPB.o open.o creat.o read.o cd.o ls.o size.o mv.o cp.o rm.o -o ../proj3.x
 	chmod -R 700 ..
 
 main.o : main.c main.h
@@ -13,6 +13,9 @@ creat.o : creat.c creat.h
 
 open.o : open.c open.h
 	$L open.c
+
+read.o : read.c read.h
+	$L read.c
 
 cd.o : cd.c cd.h
 	$L cd.c
